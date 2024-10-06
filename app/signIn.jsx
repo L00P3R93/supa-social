@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View, Pressable, Alert } from 'react-native'
-import React, { useRef, useState } from 'react'
-import ScreenWrapper from '../components/ScreenWrapper'
-import { StatusBar } from 'expo-status-bar'
-import BackButton from '../components/BackButton'
-import { useRouter } from 'expo-router'
-import { theme } from '../constants/theme'
-import { hp, wp } from '../helpers/common'
-import Input from '../components/Input'
-import Icon from '../assets/icons'
-import Button from '../components/Button'
+import { StyleSheet, Text, View, Pressable, Alert } from 'react-native';
+import React, { useRef, useState } from 'react';
+import ScreenWrapper from '../components/ScreenWrapper';
+import { StatusBar } from 'expo-status-bar';
+import BackButton from '../components/BackButton';
+import { useRouter } from 'expo-router';
+import { theme } from '../constants/theme';
+import { hp, wp } from '../helpers/common';
+import Input from '../components/Input';
+import Icon from '../assets/icons';
+import Button from '../components/Button';
 
 
 const SignIn = () => {
@@ -19,10 +19,10 @@ const SignIn = () => {
 
     const onSubmit = async () => {
         if(!emailRef.current || !passwordRef.current) {
-            Alert.alert('Sign In Error', "Please fill all the fields");
+            Alert.alert('Error', "Please fill all the fields");
             return;
         }
-    }
+    };
 
     return (
         <ScreenWrapper>
@@ -38,7 +38,7 @@ const SignIn = () => {
 
                 {/* Form */}
                 <View style={styles.form}>
-                    <Text style={{ fontSize: hp(1.5), color: theme.colors.text }}>
+                    <Text style={{ fontSize: hp(1.8), color: theme.colors.text }}>
                         Please Sign In to continue
                     </Text>
                     <Input
@@ -72,7 +72,7 @@ const SignIn = () => {
     )
 }
 
-export default SignIn
+export default SignIn;
 
 const styles = StyleSheet.create({
     container: {
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
         color: theme.colors.text,
         fontSize: hp(1.9),
     },
-})
+});
