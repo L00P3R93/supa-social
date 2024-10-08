@@ -9,6 +9,7 @@ import { hp, wp } from '../helpers/common';
 import Input from '../components/Input';
 import Icon from '../assets/icons';
 import Button from '../components/Button';
+import { supabase } from '../lib/supabase';
 
 
 const SignIn = () => {
@@ -22,6 +23,21 @@ const SignIn = () => {
             Alert.alert('Error', "Please fill all the fields");
             return;
         }
+
+        let email = emailRef.current.trim();
+        let password = passwordRef.current.trim();
+
+        setLoading(true);
+
+        const { error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        console.log('Error: ', error);
+
+        if(error) Alert.alert('Error',error.message);
+        setLoading(false);
     };
 
     return (
