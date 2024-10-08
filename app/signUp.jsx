@@ -9,6 +9,7 @@ import { hp, wp } from '../helpers/common';
 import Input from '../components/Input';
 import Icon from '../assets/icons';
 import Button from '../components/Button';
+import { supabase } from '../lib/supabase';
 
 
 const SignUp = () => {
@@ -23,6 +24,29 @@ const SignUp = () => {
             Alert.alert('Error', "Please fill all the fields");
             return;
         }
+        let name = nameRef.current.trim();
+        let email = emailRef.current.trim();
+        let password = passwordRef.current.trim();
+
+        setLoading(true);
+
+        const { data: { session }, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    name: name
+                }
+            }
+        });
+
+        //console.log('Session: ', session);
+        //console.log('Error: ', error);
+
+        if(error) Alert.alert('Error',error.message);
+        if(!session) Alert.alert("Something went wrong");
+
+        setLoading(false);
     };
 
     return (
